@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 31738335}
   m_Layer: 0
   m_Name: PlayerTwo
-  m_TagString: Untagged
+  m_TagString: PlayerTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14b410d7c9990b4298a61f73133cdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerTwoGoal: 0
+  isPlayerTwoGoal: 1
 --- !u!61 &401790019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -870,7 +870,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14b410d7c9990b4298a61f73133cdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerTwoGoal: 1
+  isPlayerTwoGoal: 0
+--- !u!1 &1112561066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112561068}
+  - component: {fileID: 1112561067}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1112561067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112561066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea7fc6c9d875014899ec53687510b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUps:
+  - {fileID: 2885483847882811906, guid: 79f55f6e1d857e84ba28847572809e03, type: 3}
+--- !u!4 &1112561068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112561066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5921708, y: 0.31906408, z: -0.11097546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373193515
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +1011,7 @@ GameObject:
   - component: {fileID: 1636641192}
   m_Layer: 0
   m_Name: PlayerOne
-  m_TagString: Untagged
+  m_TagString: PlayerOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1160,6 +1206,7 @@ MonoBehaviour:
   BallRigid: {fileID: 1662604462}
   Difficulty: 5
   StartPosition: {x: 0, y: 0, z: 0}
+  isPlayerOneFavoured: 0
 --- !u!58 &1662604461
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1460,3 +1507,4 @@ SceneRoots:
   - {fileID: 1065153685}
   - {fileID: 703584953}
   - {fileID: 761940661}
+  - {fileID: 1112561068}
