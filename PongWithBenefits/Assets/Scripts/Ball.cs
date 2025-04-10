@@ -7,19 +7,19 @@ public class Ball : MonoBehaviour
 {
     public Rigidbody2D BallRigid;
     bool isRightSideBeginning;
-    public float Difficulty;
+    public float Difficulty;    // Basically Speed of the ball
     public Vector3 StartPosition;
 
+    public bool isPlayerOneFavoured;
+
+    PlayerOne Player;
+    LogicManager Logic;
     // Start is called before the first frame update
     void Start()
     {
         BallMovement();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Player = GameObject.FindWithTag("PlayerOne").GetComponent<PlayerOne>();
+        Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
     }
 
     public void BallMovement()
@@ -48,5 +48,26 @@ public class Ball : MonoBehaviour
             BallRigid.velocity -= RandomDirection.normalized * Difficulty;
         }
     }
-   
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerOne"))
+        {
+            isPlayerOneFavoured = true;
+
+            if (PlayerOne.isPlayerOneBigger)
+            {
+                Logic.RevertBiggerPowerUp();
+            }
+        }
+        if (collision.gameObject.CompareTag("PlayerTwo"))
+        {
+            isPlayerOneFavoured = false;
+
+            if (PlayerOne.isPlayerTwoBigger)
+            {
+                Logic.RevertBiggerPowerUp();
+            }
+        }
+    }
 }

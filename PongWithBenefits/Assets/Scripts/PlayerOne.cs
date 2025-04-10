@@ -10,11 +10,17 @@ public class PlayerOne : MonoBehaviour
     public float moveSpeed;
     public bool isPlayerOne;
     public Vector3 StartPostionPlayer;
+    LogicManager Logic;
+
+    //Variablen für GetBiggerPowerUp
+    public static bool isPlayerOneBigger;
+    public static bool isPlayerTwoBigger;
 
     // Start is called before the first frame update
     void Start()
     {
         StartPostionPlayer = transform.position;
+        Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
     }
 
     // Update is called once per frame
@@ -41,5 +47,7 @@ public class PlayerOne : MonoBehaviour
             PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
         }
 
+        Debug.Log("Is Player One Bigger = " + isPlayerOneBigger);
+        Debug.Log("Is Player Two Bigger = " + isPlayerTwoBigger);
     }
 }

@@ -15,7 +15,10 @@ public class LogicManager : MonoBehaviour
     public PlayerOne Player;
     public PlayerOne Player2;
     public Ball Ball;
-   
+
+    //Variablen für SizeChangePowerup
+    Vector3 ScaleChange = new Vector3(0, 20, 0);
+
     public void AddPlayerTwoScore()
     {
         GoalAIScore += 1f;
@@ -36,5 +39,37 @@ public class LogicManager : MonoBehaviour
         Ball.BallRigid.velocity = Ball.StartPosition;
         Ball.BallRigid.transform.position = Ball.StartPosition;
         Ball.BallMovement();
+    }
+
+    //Methods for making the player bigger/smaller
+    public void GetBiggerPowerUp()
+    {
+        if (Ball.isPlayerOneFavoured)
+        {
+            Player.transform.localScale = Player.transform.localScale + ScaleChange;
+            PlayerOne.isPlayerOneBigger = true;
+            Debug.Log("Player One is bigger now!");
+        }
+        if (!Ball.isPlayerOneFavoured)
+        {
+            Player2.transform.localScale = Player.transform.localScale + ScaleChange;
+            PlayerOne.isPlayerTwoBigger = true;
+            Debug.Log("Player Two is bigger now!");
+        }
+    }
+    public void RevertBiggerPowerUp()
+    {
+        if (PlayerOne.isPlayerOneBigger)
+        {
+            Player.transform.localScale = Player.transform.localScale - ScaleChange;
+            PlayerOne.isPlayerOneBigger = false;
+            Debug.Log("Player One is smaller now!");
+        }
+        if (PlayerOne.isPlayerTwoBigger)
+        {
+            Player2.transform.localScale = Player2.transform.localScale - ScaleChange;
+            PlayerOne.isPlayerTwoBigger = false;
+            Debug.Log("Player Two is smaller now!");
+        }
     }
 }
