@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetBiggerPowerUp : MonoBehaviour
+public class ShootingRayPowerup : MonoBehaviour
 {
     LogicManager Logic;
     PlayerOne Player;
@@ -13,10 +13,17 @@ public class GetBiggerPowerUp : MonoBehaviour
         Player = GameObject.FindWithTag("PlayerOne").GetComponent<PlayerOne>();
         StartCoroutine(Logic.DestroyAfterSeconds());
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Logic.GetBiggerPowerUp();
-        Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            StartCoroutine(Logic.ActivateLasers());
+        }
     }
 }
-

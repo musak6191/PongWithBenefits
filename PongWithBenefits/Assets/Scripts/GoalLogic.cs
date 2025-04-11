@@ -15,14 +15,16 @@ public class GoalLogic : MonoBehaviour
 
     public void OnTriggerEnter2D (Collider2D collision)
     {
-        if (isPlayerTwoGoal)
+        if (collision.gameObject.CompareTag("Ball"))
         {
-            Logic.AddPlayerTwoScore();
+            if (isPlayerTwoGoal)
+            {
+                Logic.AddPlayerTwoScore();
+            }
+            else
+            {
+                Logic.AddPlayerScore();
+            }
         }
-        else
-        {
-            Logic.AddPlayerScore();
-        }
-        
     }
 }

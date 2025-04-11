@@ -49,12 +49,26 @@ public class PlayerOne : MonoBehaviour
             PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ShootingRay"))
+        {
+            StartCoroutine(GetStun(2));
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
             moveSpeed += 0.25f;
         }
+    }
+    
+    IEnumerator GetStun(float StunTime)
+    {
+        float MoveSpeedFromBefore = moveSpeed;
+        moveSpeed = 0;
+        yield return new WaitForSeconds(StunTime);
+        moveSpeed = MoveSpeedFromBefore;
     }
 }

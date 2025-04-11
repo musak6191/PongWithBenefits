@@ -16,6 +16,9 @@ public class LogicManager : MonoBehaviour
     public PlayerOne Player2;
     public Ball Ball;
 
+    [SerializeField] GameObject ShootingRay;
+    [SerializeField] GameObject ShootingRay2;
+
     //Variablen für SizeChangePowerup
     Vector3 ScaleChange = new Vector3(0, 20, 0);
 
@@ -41,6 +44,15 @@ public class LogicManager : MonoBehaviour
         Ball.BallRigid.velocity = Ball.StartPosition;
         Ball.BallRigid.transform.position = Ball.StartPosition;
         Ball.BallMovement();
+    }
+
+    // Powerups
+
+    //Verschwindet nach so und sovielen Sekunden
+    public IEnumerator DestroyAfterSeconds()
+    {
+        yield return new WaitForSeconds(8);
+        Destroy(gameObject);
     }
 
     //Methods for making the player bigger/smaller
@@ -72,6 +84,23 @@ public class LogicManager : MonoBehaviour
             Player2.transform.localScale = Player2.transform.localScale - ScaleChange;
             PlayerOne.isPlayerTwoBigger = false;
             Debug.Log("Player Two is smaller now!");
+        }
+    }
+
+    //Method for instantiating a Ray that stuns
+    public IEnumerator ActivateLasers()
+    {
+        if (Ball.isPlayerOneFavoured)
+        {
+            ShootingRay.SetActive(true);
+            yield return new WaitForSeconds(2);
+            ShootingRay.SetActive(false);
+        }
+        if (!Ball.isPlayerOneFavoured)
+        {
+            ShootingRay2.SetActive(true);
+            yield return new WaitForSeconds(2);
+            ShootingRay2.SetActive(false);
         }
     }
 }
