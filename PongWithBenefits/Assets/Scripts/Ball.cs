@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public Rigidbody2D BallRigid;
-    bool isRightSideBeginning;
+    public Rigidbody2D BallRigid;       // Rigidbody vom Ball
+    bool isRightSideBeginning;      // Welche Seite fängt an Boolean
     public float Difficulty;    // Basically Speed of the ball
-    public Vector3 StartPosition;
+    public Vector3 StartPosition;       //Start Position deklarieren
 
-    float[] PossibleDirections = new float[] { -0.75f, -0.25f, 0.25f, 0.75f };
+    float SpeedIncrease = 0.25f;        // Wie viel schneller es sein soll nach jedem Bounce
+
+    float[] PossibleDirections = new float[] { -0.75f, -0.25f, 0.25f, 0.75f };      // Array für mögliche Richtungen
 
     public bool isPlayerOneFavoured;
 
@@ -61,7 +63,10 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Nach jedem Bounce schneller machen
-        // BallRigid.velocity += new Vector2 (0.0025f, 0.0025f);
+        Vector2 currentDirection = BallRigid.velocity.normalized;       // Richtungsvektor mithilfe von Geschwindigkeitsvektor speicher
+        float NewSpeed = BallRigid.velocity.magnitude + SpeedIncrease;      // Neue Speed Variable setzen mithilfe von Länge vom Speed Vektor + Speed Increase
+
+        BallRigid.velocity = currentDirection * NewSpeed;       // Neue Geschwindigkeit gesetzt indem normalized Richtung (also Länge 1) mit neuem Speed multipliziert wird
 
         // Wer hat den Ball zuletzt berührt
         if (collision.gameObject.CompareTag("PlayerOne"))
