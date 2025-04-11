@@ -156,9 +156,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRigid: {fileID: 31738336}
-  moveSpeed: 5
+  MoveSpeed: 5
+  StartMoveSpeed: 5
   isPlayerOne: 0
   StartPostionPlayer: {x: 0, y: 0, z: 0}
+  StartScalePlayer: {x: 0, y: 0, z: 0}
 --- !u!50 &31738336
 Rigidbody2D:
   serializedVersion: 4
@@ -532,6 +534,8 @@ MonoBehaviour:
   Player: {fileID: 1636641192}
   Player2: {fileID: 31738335}
   Ball: {fileID: 1662604460}
+  ShootingRay: {fileID: 0}
+  ShootingRay2: {fileID: 0}
 --- !u!1 &703584949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,9 +1172,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRigid: {fileID: 1636641191}
-  moveSpeed: 5
+  MoveSpeed: 5
+  StartMoveSpeed: 5
   isPlayerOne: 1
   StartPostionPlayer: {x: 0, y: 0, z: 0}
+  StartScalePlayer: {x: 0, y: 0, z: 0}
 --- !u!1 &1662604459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1192,7 @@ GameObject:
   - component: {fileID: 1662604460}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
