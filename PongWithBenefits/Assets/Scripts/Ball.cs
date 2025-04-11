@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
     public float Difficulty;    // Basically Speed of the ball
     public Vector3 StartPosition;
 
+    float[] PossibleDirections = new float[] { -0.75f, -0.25f, 0.25f, 0.75f };
+
     public bool isPlayerOneFavoured;
 
     PlayerOne Player;
@@ -33,7 +35,9 @@ public class Ball : MonoBehaviour
 
         StartPosition = transform.position;
 
-        Vector2 RandomDirection = new Vector3(Random.Range(0.25f, 0.75f), Random.Range(0.25f, 0.75f));
+        int RandomIndexDirection = Random.Range(0, PossibleDirections.Length);
+
+        Vector2 RandomDirection = new Vector3(PossibleDirections[RandomIndexDirection], PossibleDirections[RandomIndexDirection]);
 
         // Coinflip
 
@@ -64,7 +68,7 @@ public class Ball : MonoBehaviour
         {
             isPlayerOneFavoured = true;
 
-            if (PlayerOne.isPlayerOneBigger && isPlayerOneFavoured)
+            if (PlayerOne.isPlayerOneBigger)
             {
                 Logic.RevertBiggerPowerUp();
             }
@@ -73,7 +77,7 @@ public class Ball : MonoBehaviour
         {
             isPlayerOneFavoured = false;
 
-            if (PlayerOne.isPlayerTwoBigger && !isPlayerOneFavoured)
+            if (PlayerOne.isPlayerTwoBigger)
             {
                 Logic.RevertBiggerPowerUp();
             }
