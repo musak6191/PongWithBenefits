@@ -11,7 +11,7 @@ public class ShootingRayPowerup : MonoBehaviour
     {
         Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
         Player = GameObject.FindWithTag("PlayerOne").GetComponent<PlayerOne>();
-        StartCoroutine(Logic.DestroyAfterSeconds());
+        StartCoroutine(DestroyAfterSeconds());
     }
 
     // Update is called once per frame
@@ -25,5 +25,11 @@ public class ShootingRayPowerup : MonoBehaviour
         {
             StartCoroutine(Logic.ActivateLasers());
         }
+    }
+
+    public IEnumerator DestroyAfterSeconds()
+    {
+        yield return new WaitForSeconds(8);
+        Destroy(gameObject);
     }
 }

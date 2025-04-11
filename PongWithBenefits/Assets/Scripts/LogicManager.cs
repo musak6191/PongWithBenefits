@@ -44,16 +44,13 @@ public class LogicManager : MonoBehaviour
         Ball.BallRigid.velocity = Ball.StartPosition;
         Ball.BallRigid.transform.position = Ball.StartPosition;
         Ball.BallMovement();
+        PlayerOne.isPlayerOneBigger = false;
+        PlayerOne.isPlayerTwoBigger = false;
+        Player.MoveSpeed = Player.StartMoveSpeed;
+        Player2.MoveSpeed = Player2.StartMoveSpeed;
     }
 
-    // Powerups
-
-    //Verschwindet nach so und sovielen Sekunden
-    public IEnumerator DestroyAfterSeconds()
-    {
-        yield return new WaitForSeconds(8);
-        Destroy(gameObject);
-    }
+                // Powerups
 
     //Methods for making the player bigger/smaller
     public void GetBiggerPowerUp()

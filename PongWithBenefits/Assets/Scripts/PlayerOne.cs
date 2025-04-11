@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 public class PlayerOne : MonoBehaviour
 {
     public Rigidbody2D PlayerRigid;
-    public float moveSpeed;
+    public float MoveSpeed;
+    public float StartMoveSpeed;
     public bool isPlayerOne;
     public Vector3 StartPostionPlayer;
     public Vector3 StartScalePlayer;
@@ -20,6 +21,7 @@ public class PlayerOne : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartMoveSpeed = MoveSpeed;
         StartPostionPlayer = transform.position;
         StartScalePlayer = transform.localScale;
         Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
@@ -31,22 +33,22 @@ public class PlayerOne : MonoBehaviour
         //Controls
         if (Input.GetKey(KeyCode.W) && isPlayerOne)         // Player One Controls
         {
-            PlayerRigid.position += Vector2.up * moveSpeed * Time.deltaTime;
+            PlayerRigid.position += Vector2.up * MoveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.S) && isPlayerOne)
         {
-            PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
+            PlayerRigid.position += Vector2.down * MoveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.UpArrow) && !isPlayerOne)      // Player Two Controls
         {
-            PlayerRigid.position += Vector2.up * moveSpeed * Time.deltaTime;
+            PlayerRigid.position += Vector2.up * MoveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) && !isPlayerOne)
         {
-            PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
+            PlayerRigid.position += Vector2.down * MoveSpeed * Time.deltaTime;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,15 +62,15 @@ public class PlayerOne : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            moveSpeed += 0.25f;
+            MoveSpeed += 0.25f;
         }
     }
     
     IEnumerator GetStun(float StunTime)
     {
-        float MoveSpeedFromBefore = moveSpeed;
-        moveSpeed = 0;
+        float MoveSpeedFromBefore = MoveSpeed;
+        MoveSpeed = 0;
         yield return new WaitForSeconds(StunTime);
-        moveSpeed = MoveSpeedFromBefore;
+        MoveSpeed = MoveSpeedFromBefore;
     }
 }
