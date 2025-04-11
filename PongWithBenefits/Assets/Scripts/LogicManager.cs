@@ -34,6 +34,8 @@ public class LogicManager : MonoBehaviour
     }
     public void ResetGame()
     {
+        Player.PlayerRigid.transform.localScale = Player.StartScalePlayer;
+        Player2.PlayerRigid.transform.localScale = Player.StartScalePlayer;
         Player.PlayerRigid.transform.position = Player.StartPostionPlayer;
         Player2.PlayerRigid.transform.position = Player2.StartPostionPlayer;
         Ball.BallRigid.velocity = Ball.StartPosition;
@@ -44,28 +46,28 @@ public class LogicManager : MonoBehaviour
     //Methods for making the player bigger/smaller
     public void GetBiggerPowerUp()
     {
-        if (Ball.isPlayerOneFavoured)
+        if (Ball.isPlayerOneFavoured && !PlayerOne.isPlayerOneBigger)
         {
             Player.transform.localScale = Player.transform.localScale + ScaleChange;
             PlayerOne.isPlayerOneBigger = true;
             Debug.Log("Player One is bigger now!");
         }
-        if (!Ball.isPlayerOneFavoured)
+        if (!Ball.isPlayerOneFavoured && !PlayerOne.isPlayerTwoBigger)
         {
-            Player2.transform.localScale = Player.transform.localScale + ScaleChange;
+            Player2.transform.localScale = Player2.transform.localScale + ScaleChange;
             PlayerOne.isPlayerTwoBigger = true;
             Debug.Log("Player Two is bigger now!");
         }
     }
     public void RevertBiggerPowerUp()
     {
-        if (PlayerOne.isPlayerOneBigger)
+        if (PlayerOne.isPlayerOneBigger && Ball.isPlayerOneFavoured)
         {
             Player.transform.localScale = Player.transform.localScale - ScaleChange;
             PlayerOne.isPlayerOneBigger = false;
             Debug.Log("Player One is smaller now!");
         }
-        if (PlayerOne.isPlayerTwoBigger)
+        if (PlayerOne.isPlayerTwoBigger && !Ball.isPlayerOneFavoured)
         {
             Player2.transform.localScale = Player2.transform.localScale - ScaleChange;
             PlayerOne.isPlayerTwoBigger = false;

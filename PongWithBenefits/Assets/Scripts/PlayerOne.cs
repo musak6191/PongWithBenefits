@@ -10,6 +10,7 @@ public class PlayerOne : MonoBehaviour
     public float moveSpeed;
     public bool isPlayerOne;
     public Vector3 StartPostionPlayer;
+    public Vector3 StartScalePlayer;
     LogicManager Logic;
 
     //Variablen für GetBiggerPowerUp
@@ -20,6 +21,7 @@ public class PlayerOne : MonoBehaviour
     void Start()
     {
         StartPostionPlayer = transform.position;
+        StartScalePlayer = transform.localScale;
         Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
     }
 
@@ -46,8 +48,5 @@ public class PlayerOne : MonoBehaviour
         {
             PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
         }
-
-        Debug.Log("Is Player One Bigger = " + isPlayerOneBigger);
-        Debug.Log("Is Player Two Bigger = " + isPlayerTwoBigger);
     }
 }

@@ -24,8 +24,8 @@ public class Ball : MonoBehaviour
     private void Update()
     {
         // Speed Clampen
-        Mathf.Clamp(BallRigid.velocity.x, 0, 20);
-        Mathf.Clamp(BallRigid.velocity.y, 0, 20);
+        //Mathf.Clamp(BallRigid.velocity.x, 0, 20);
+        //Mathf.Clamp(BallRigid.velocity.y, 0, 20);
     }
     public void BallMovement()
     {
@@ -57,14 +57,14 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Nach jedem Bounce schneller machen
-        BallRigid.velocity += new Vector2 (0.0025f, 0.0025f);
+        // BallRigid.velocity += new Vector2 (0.0025f, 0.0025f);
 
         // Wer hat den Ball zuletzt berührt
         if (collision.gameObject.CompareTag("PlayerOne"))
         {
             isPlayerOneFavoured = true;
 
-            if (PlayerOne.isPlayerOneBigger)
+            if (PlayerOne.isPlayerOneBigger && isPlayerOneFavoured)
             {
                 Logic.RevertBiggerPowerUp();
             }
@@ -73,7 +73,7 @@ public class Ball : MonoBehaviour
         {
             isPlayerOneFavoured = false;
 
-            if (PlayerOne.isPlayerTwoBigger)
+            if (PlayerOne.isPlayerTwoBigger && !isPlayerOneFavoured)
             {
                 Logic.RevertBiggerPowerUp();
             }
