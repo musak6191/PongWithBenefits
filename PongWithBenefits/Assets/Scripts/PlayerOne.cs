@@ -49,4 +49,12 @@ public class PlayerOne : MonoBehaviour
             PlayerRigid.position += Vector2.down * moveSpeed * Time.deltaTime;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            moveSpeed += 0.25f;
+        }
+    }
 }
