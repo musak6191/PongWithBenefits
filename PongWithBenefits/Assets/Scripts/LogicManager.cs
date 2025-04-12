@@ -48,9 +48,20 @@ public class LogicManager : MonoBehaviour
         PlayerOne.isPlayerTwoBigger = false;
         Player.MoveSpeed = Player.StartMoveSpeed;
         Player2.MoveSpeed = Player2.StartMoveSpeed;
+        DeleteAllPowerUpsFromField();
     }
 
-                // Powerups
+                        // Powerups
+
+    //Method to remove all Powerups
+    void DeleteAllPowerUpsFromField()
+    {
+        PowerUpBase[] AllPowerUpsOnField = FindObjectsOfType<PowerUpBase>();
+        foreach (PowerUpBase PowerUp in AllPowerUpsOnField)
+        {
+            Destroy(PowerUp.gameObject);
+        }
+    }
 
     //Methods for making the player bigger/smaller
     public void GetBiggerPowerUp()
