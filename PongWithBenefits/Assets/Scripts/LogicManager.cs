@@ -19,6 +19,8 @@ public class LogicManager : MonoBehaviour
     [SerializeField] GameObject ShootingRay;
     [SerializeField] GameObject ShootingRay2;
 
+    [SerializeField] SpawnManager Spawn;
+
     //Variablen für SizeChangePowerup
     Vector3 ScaleChange = new Vector3(0, 20, 0);
 
@@ -49,6 +51,8 @@ public class LogicManager : MonoBehaviour
         Player.MoveSpeed = Player.StartMoveSpeed;
         Player2.MoveSpeed = Player2.StartMoveSpeed;
         DeleteAllPowerUpsFromField();
+        Spawn.CancelInvoke();
+        Spawn.InvokeRepeating("SpawnPowerup", 5, 5);
     }
 
                         // Powerups

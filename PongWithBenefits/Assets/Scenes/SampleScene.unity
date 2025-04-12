@@ -536,6 +536,7 @@ MonoBehaviour:
   Ball: {fileID: 1662604460}
   ShootingRay: {fileID: 0}
   ShootingRay2: {fileID: 0}
+  Spawn: {fileID: 1112561067}
 --- !u!1 &703584949
 GameObject:
   m_ObjectHideFlags: 0

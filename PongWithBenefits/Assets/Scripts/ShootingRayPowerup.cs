@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingRayPowerup : MonoBehaviour
+public class ShootingRayPowerup : PowerUpBase
 {
     LogicManager Logic;
     PlayerOne Player;
