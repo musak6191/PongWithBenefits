@@ -105,13 +105,13 @@ public class LogicManager : MonoBehaviour
         if (Ball.isPlayerOneFavoured)
         {
             ShootingRay.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(2.2f);
             ShootingRay.SetActive(false);
         }
         if (!Ball.isPlayerOneFavoured)
         {
             ShootingRay2.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(2.2f);
             ShootingRay2.SetActive(false);
         }
     }

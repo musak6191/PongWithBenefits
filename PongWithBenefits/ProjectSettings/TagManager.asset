@@ -9,6 +9,7 @@ TagManager:
   - PlayerTwo
   - Ball
   - PowerUp
+  - Projectile
   layers:
   - Default
   - TransparentFX

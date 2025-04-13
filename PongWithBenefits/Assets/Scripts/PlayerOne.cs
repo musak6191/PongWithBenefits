@@ -53,9 +53,9 @@ public class PlayerOne : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ShootingRay"))
+        if (collision.gameObject.CompareTag("Projectile"))
         {
-            StartCoroutine(GetStun(2));
+            StartCoroutine(GetStun(1));
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -66,11 +66,16 @@ public class PlayerOne : MonoBehaviour
         }
     }
     
+    // Spieler darf sich nicht mehr bewegen und blitzt für die Zeit dunkel auf
     IEnumerator GetStun(float StunTime)
     {
+        SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
+        Color CurrentColor = Sprite.color;
+        Sprite.color = Color.black;
         float MoveSpeedFromBefore = MoveSpeed;
         MoveSpeed = 0;
         yield return new WaitForSeconds(StunTime);
         MoveSpeed = MoveSpeedFromBefore;
+        Sprite.color = CurrentColor;
     }
 }

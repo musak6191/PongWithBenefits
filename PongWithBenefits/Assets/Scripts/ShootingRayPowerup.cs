@@ -6,23 +6,25 @@ public class ShootingRayPowerup : PowerUpBase
 {
     LogicManager Logic;
     PlayerOne Player;
+    ActivateShootingRay ShootingRay;
     // Start is called before the first frame update
     void Start()
     {
         Logic = GameObject.FindWithTag("Logic").GetComponent<LogicManager>();
         Player = GameObject.FindWithTag("PlayerOne").GetComponent<PlayerOne>();
-        StartCoroutine(DestroyAfterSeconds());
-    }
+        Transform child = Player.transform.Find("ShootingRay");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //ShootingRay = Player.GetComponentInChildren<ActivateShootingRay>();
+
+        ShootingRay = child.GetComponent<ActivateShootingRay>();
+
+        StartCoroutine(DestroyAfterSeconds());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            ShootingRay.isShootingRayActivated = true;
             StartCoroutine(Logic.ActivateLasers());
         }
     }
