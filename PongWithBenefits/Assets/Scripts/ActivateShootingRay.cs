@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ActivateShootingRay : MonoBehaviour
 {
+    public static ActivateShootingRay instance;
+
     Vector3 BigScale = new Vector3(136.90f, 0.39f, 1);
     Vector3 SmallScale = new Vector3(136.90f, 0.1f, 1);
+
+    public float WindUpTime = 1;
+    public float duration = 0.5f;
 
     public bool isShootingRayActivated;
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         transform.localScale = SmallScale;
     }
 
@@ -19,7 +25,7 @@ public class ActivateShootingRay : MonoBehaviour
     {
         if (isShootingRayActivated)
         {
-            StartCoroutine(ShootingRayWindUp(1, 1.2f));
+            StartCoroutine(ShootingRayWindUp(WindUpTime, duration));
         }
     }
 

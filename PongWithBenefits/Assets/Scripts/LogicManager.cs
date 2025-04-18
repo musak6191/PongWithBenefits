@@ -18,12 +18,17 @@ public class LogicManager : MonoBehaviour
 
     [SerializeField] GameObject ShootingRay;
     [SerializeField] GameObject ShootingRay2;
+    ActivateShootingRay ShootingRayScript;
 
     [SerializeField] SpawnManager Spawn;
 
     //Variablen für SizeChangePowerup
     Vector3 ScaleChange = new Vector3(0, 20, 0);
 
+    private void Start()
+    {
+        ShootingRayScript = FindAnyObjectByType<ActivateShootingRay>();
+    }
     public void AddPlayerTwoScore()
     {
         GoalAIScore += 1f;
@@ -100,18 +105,18 @@ public class LogicManager : MonoBehaviour
     }
 
     //Method for instantiating a Ray that stuns
-    public IEnumerator ActivateLasers()
+    public IEnumerator ActivateLasers(float ActivationDuration)
     {
         if (Ball.isPlayerOneFavoured)
         {
             ShootingRay.SetActive(true);
-            yield return new WaitForSeconds(2.2f);
+            yield return new WaitForSeconds(ActivationDuration);
             ShootingRay.SetActive(false);
         }
         if (!Ball.isPlayerOneFavoured)
         {
             ShootingRay2.SetActive(true);
-            yield return new WaitForSeconds(2.2f);
+            yield return new WaitForSeconds(ActivationDuration);
             ShootingRay2.SetActive(false);
         }
     }
