@@ -24,8 +24,9 @@ public class ShootingRayPowerup : PowerUpBase
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            ActivateShootingRay.instance.isShootingRayActivated = true;
+            ActivateShootingRay.instance.isShootingRayAlreadyActive = true;
             StartCoroutine(Logic.ActivateLasers(ShootingRay.WindUpTime + ShootingRay.duration));
+            Destroy(gameObject);
         }
     }
 

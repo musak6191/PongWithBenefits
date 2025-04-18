@@ -58,6 +58,8 @@ public class LogicManager : MonoBehaviour
         DeleteAllPowerUpsFromField();
         Spawn.CancelInvoke();
         Spawn.InvokeRepeating("SpawnPowerup", 5, 5);
+        ShootingRay.SetActive(false);
+        ShootingRay2.SetActive(false);
     }
 
                         // Powerups
