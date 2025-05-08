@@ -537,6 +537,7 @@ MonoBehaviour:
   Ball: {fileID: 1662604460}
   ShootingRay: {fileID: 1175302898}
   ShootingRay2: {fileID: 1561482055}
+  isShootingRayAlreadyActive: 0
   Spawn: {fileID: 1112561067}
 --- !u!1 &703584949
 GameObject:
@@ -1067,9 +1068,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90fcd2535b7fc234b974b55699107fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BigScale: {x: 136.9, y: 0.39, z: 1}
+  SmallScale: {x: 136.9, y: 0.1, z: 1}
   WindUpTime: 1
   duration: 0.5
-  isShootingRayAlreadyActive: 0
 --- !u!1 &1373193515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,9 +1294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90fcd2535b7fc234b974b55699107fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BigScale: {x: 136.9, y: 0.39, z: 1}
+  SmallScale: {x: 136.9, y: 0.1, z: 1}
   WindUpTime: 1
   duration: 0.5
-  isShootingRayAlreadyActive: 0
 --- !u!1 &1636641186
 GameObject:
   m_ObjectHideFlags: 0

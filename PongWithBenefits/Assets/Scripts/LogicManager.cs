@@ -19,6 +19,7 @@ public class LogicManager : MonoBehaviour
     [SerializeField] GameObject ShootingRay;
     [SerializeField] GameObject ShootingRay2;
     ActivateShootingRay ShootingRayScript;
+    public bool isShootingRayAlreadyActive;
 
     [SerializeField] SpawnManager Spawn;
 
@@ -81,13 +82,11 @@ public class LogicManager : MonoBehaviour
         {
             Player.transform.localScale = Player.transform.localScale + ScaleChange;
             PlayerOne.isPlayerOneBigger = true;
-            Debug.Log("Player One is bigger now!");
         }
         if (!Ball.isPlayerOneFavoured && !PlayerOne.isPlayerTwoBigger)
         {
             Player2.transform.localScale = Player2.transform.localScale + ScaleChange;
             PlayerOne.isPlayerTwoBigger = true;
-            Debug.Log("Player Two is bigger now!");
         }
     }
     public void RevertBiggerPowerUp()
@@ -96,30 +95,46 @@ public class LogicManager : MonoBehaviour
         {
             Player.transform.localScale = Player.transform.localScale - ScaleChange;
             PlayerOne.isPlayerOneBigger = false;
-            Debug.Log("Player One is smaller now!");
         }
         if (PlayerOne.isPlayerTwoBigger && !Ball.isPlayerOneFavoured)
         {
             Player2.transform.localScale = Player2.transform.localScale - ScaleChange;
             PlayerOne.isPlayerTwoBigger = false;
-            Debug.Log("Player Two is smaller now!");
         }
     }
 
     //Method for instantiating a Ray that stuns
-    public IEnumerator ActivateLasers(float ActivationDuration)
+    public IEnumerator ActivateLasers()
     {
-        if (Ball.isPlayerOneFavoured)
+        if (Ball.isPlayerOneFavoured && isShootingRayAlreadyActive)
         {
+            Debug.Log("ShootingRay1 activated");
+            Debug.Log(isShootingRayAlreadyActive);
             ShootingRay.SetActive(true);
-            yield return new WaitForSeconds(ActivationDuration);
-            ShootingRay.SetActive(false);
+            yield return new WaitForSeconds(ShootingRayScript.WindUpTime);
+            Debug.Log("Winduptime vorbei!");
+            ShootingRay.transform.localScale = ShootingRayScript.BigScale;
+            ShootingRay.gameObject.tag = "Projectile";
+            yield return new WaitForSeconds(ShootingRayScript.duration);
+            ShootingRay2.transform.localScale = ShootingRayScript.SmallScale;
+            ShootingRay.gameObject.tag = "Untagged";
+            isShootingRayAlreadyActive = false;
+            ShootingRay.gameObject.SetActive(false);
         }
-        if (!Ball.isPlayerOneFavoured)
+        else if (!Ball.isPlayerOneFavoured && isShootingRayAlreadyActive)
         {
+            Debug.Log("ShootingRay2 activated");
+            Debug.Log(isShootingRayAlreadyActive);
             ShootingRay2.SetActive(true);
-            yield return new WaitForSeconds(ActivationDuration);
-            ShootingRay2.SetActive(false);
+            yield return new WaitForSeconds(ShootingRayScript.WindUpTime);
+            Debug.Log("Winduptime vorbei!");
+            ShootingRay2.transform.localScale = ShootingRayScript.BigScale;
+            ShootingRay2.gameObject.tag = "Projectile";
+            yield return new WaitForSeconds(ShootingRayScript.duration);
+            ShootingRay2.transform.localScale = ShootingRayScript.SmallScale;
+            ShootingRay2.gameObject.tag = "Untagged";
+            isShootingRayAlreadyActive = false;
+            ShootingRay2.gameObject.SetActive(false);
         }
     }
 }

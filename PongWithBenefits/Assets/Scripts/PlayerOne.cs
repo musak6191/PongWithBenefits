@@ -18,6 +18,8 @@ public class PlayerOne : MonoBehaviour
     public static bool isPlayerOneBigger;
     public static bool isPlayerTwoBigger;
 
+    bool isAlreadyStunned;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,9 +55,9 @@ public class PlayerOne : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag("Projectile") && !isAlreadyStunned)
         {
-            StartCoroutine(GetStun(1));
+            StartCoroutine(GetStun(0.5f));
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,6 +71,7 @@ public class PlayerOne : MonoBehaviour
     // Spieler darf sich nicht mehr bewegen und blitzt für die Zeit dunkel auf
     IEnumerator GetStun(float StunTime)
     {
+        isAlreadyStunned = true;
         SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
         Color CurrentColor = Sprite.color;
         Sprite.color = Color.black;
@@ -77,5 +80,6 @@ public class PlayerOne : MonoBehaviour
         yield return new WaitForSeconds(StunTime);
         MoveSpeed = MoveSpeedFromBefore;
         Sprite.color = CurrentColor;
+        isAlreadyStunned = false;
     }
 }
