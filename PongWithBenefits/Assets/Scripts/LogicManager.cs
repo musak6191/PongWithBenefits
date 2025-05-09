@@ -23,12 +23,19 @@ public class LogicManager : MonoBehaviour
 
     [SerializeField] SpawnManager Spawn;
 
+    SpriteRenderer Sprite1;
+    SpriteRenderer Sprite2;
+    Color CurrentColorLogic1;
+
     //Variablen für SizeChangePowerup
     Vector3 ScaleChange = new Vector3(0, 20, 0);
 
     private void Start()
     {
         ShootingRayScript = FindAnyObjectByType<ActivateShootingRay>();
+        Sprite1 = Player.GetComponent<SpriteRenderer>();
+        Sprite2 = Player2.GetComponent<SpriteRenderer>();
+        CurrentColorLogic1 = Sprite1.color;
     }
     public void AddPlayerTwoScore()
     {
@@ -49,6 +56,8 @@ public class LogicManager : MonoBehaviour
         Player2.PlayerRigid.transform.localScale = Player.StartScalePlayer;
         Player.PlayerRigid.transform.position = Player.StartPostionPlayer;
         Player2.PlayerRigid.transform.position = Player2.StartPostionPlayer;
+        Sprite1.color = CurrentColorLogic1;
+        Sprite2.color = CurrentColorLogic1;
         Ball.BallRigid.velocity = Ball.StartPosition;
         Ball.BallRigid.transform.position = Ball.StartPosition;
         Ball.BallMovement();
@@ -108,26 +117,20 @@ public class LogicManager : MonoBehaviour
     {
         if (Ball.isPlayerOneFavoured && isShootingRayAlreadyActive)
         {
-            Debug.Log("ShootingRay1 activated");
-            Debug.Log(isShootingRayAlreadyActive);
             ShootingRay.SetActive(true);
             yield return new WaitForSeconds(ShootingRayScript.WindUpTime);
-            Debug.Log("Winduptime vorbei!");
             ShootingRay.transform.localScale = ShootingRayScript.BigScale;
             ShootingRay.gameObject.tag = "Projectile";
             yield return new WaitForSeconds(ShootingRayScript.duration);
-            ShootingRay2.transform.localScale = ShootingRayScript.SmallScale;
+            ShootingRay.transform.localScale = ShootingRayScript.SmallScale;
             ShootingRay.gameObject.tag = "Untagged";
             isShootingRayAlreadyActive = false;
             ShootingRay.gameObject.SetActive(false);
         }
         else if (!Ball.isPlayerOneFavoured && isShootingRayAlreadyActive)
         {
-            Debug.Log("ShootingRay2 activated");
-            Debug.Log(isShootingRayAlreadyActive);
             ShootingRay2.SetActive(true);
             yield return new WaitForSeconds(ShootingRayScript.WindUpTime);
-            Debug.Log("Winduptime vorbei!");
             ShootingRay2.transform.localScale = ShootingRayScript.BigScale;
             ShootingRay2.gameObject.tag = "Projectile";
             yield return new WaitForSeconds(ShootingRayScript.duration);
