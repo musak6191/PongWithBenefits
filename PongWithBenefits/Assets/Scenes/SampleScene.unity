@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 31738337}
   - component: {fileID: 31738336}
   - component: {fileID: 31738335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerTwo
   m_TagString: PlayerTwo
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 1636641188}
   - component: {fileID: 1636641191}
   - component: {fileID: 1636641192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerOne
   m_TagString: PlayerOne
   m_Icon: {fileID: 0}
@@ -1829,6 +1829,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+  Player:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!212 &2065026504
 SpriteRenderer:
   m_ObjectHideFlags: 0
