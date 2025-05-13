@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LogicManager : MonoBehaviour
 {
+    public static LogicManager Instance;
 
     public float GoalPlayerScore = 0;
     public float GoalAIScore = 0;
@@ -30,8 +31,22 @@ public class LogicManager : MonoBehaviour
     //Variablen für SizeChangePowerup
     Vector3 ScaleChange = new Vector3(0, 20, 0);
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
+        AIGoalUI.text = GoalAIScore.ToString();
+        PlayerGoalUI.text = GoalPlayerScore.ToString();
         ShootingRayScript = FindAnyObjectByType<ActivateShootingRay>();
         Sprite1 = Player.GetComponent<SpriteRenderer>();
         Sprite2 = Player2.GetComponent<SpriteRenderer>();
