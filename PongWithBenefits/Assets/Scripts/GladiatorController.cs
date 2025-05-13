@@ -95,15 +95,17 @@ public class GladiatorController : MonoBehaviour
         Time.timeScale = 0;
         GameOverUI.gameObject.SetActive(true);
         PointUI.gameObject.SetActive(false);
-        if (Player1 == null)
+        if (Player1 == null)                                                    // <---- Du frägst hier ab ob die destroyed werden obwohl niemand destroyed wird
         {
             GameOverUI.text = "Player 2 wins " + PointsToWin + " points !";
-            LogicManager.Instance.GoalAIScore += PointsToWin;
+            EternalGameManagerScript.Instance.Player2GoalPointsTransfer += PointsToWin;
+            EternalGameManagerScript.Instance.isGladiatorFightOver = true;
         }
-        else
+        else if (Player2 == null)
         {
             GameOverUI.text = "Player 1 wins " + PointsToWin + " points !";
-            LogicManager.Instance.GoalPlayerScore += PointsToWin;
+            EternalGameManagerScript.Instance.PlayerGoalPointsTransfer += PointsToWin;
+            EternalGameManagerScript.Instance.isGladiatorFightOver = true;
         }
 
         yield return new WaitForSecondsRealtime(3);
@@ -117,9 +119,7 @@ public class GladiatorController : MonoBehaviour
         GameOverUI.gameObject.SetActive(true);
         PointUI.gameObject.SetActive(false);
         GameOverUI.text = "Kill your opponent!";
-        Debug.Log("3 Sekunden angefangen!");
         yield return new WaitForSecondsRealtime(3);
-        Debug.Log("3 Sekunden beendet!");
         GameOverUI.gameObject.SetActive(false);
         PointUI.gameObject.SetActive(true);
         Time.timeScale = 1;

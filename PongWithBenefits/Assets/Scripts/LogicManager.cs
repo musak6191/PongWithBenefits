@@ -36,7 +36,6 @@ public class LogicManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -45,6 +44,14 @@ public class LogicManager : MonoBehaviour
     }
     private void Start()
     {
+        //PlayerGoalUI = GameObject.Find("PlayerOneGoalInfo").GetComponent<Text>();
+        //AIGoalUI = GameObject.Find("PlayerTwoGoalInfo").GetComponent<Text>();
+        //Player = GameObject.Find("PlayerOne").GetComponent<PlayerOne>();
+        //Player2 = GameObject.Find("PlayerTwo").GetComponent<PlayerOne>();
+        //Ball = GameObject.Find("Ball").GetComponent<Ball>();
+        //ShootingRay = GameObject.Find("ShootingRay");
+        //ShootingRay2 = GameObject.Find("ShootingRay2");
+        //Spawn = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         AIGoalUI.text = GoalAIScore.ToString();
         PlayerGoalUI.text = GoalPlayerScore.ToString();
         ShootingRayScript = FindAnyObjectByType<ActivateShootingRay>();
@@ -52,6 +59,7 @@ public class LogicManager : MonoBehaviour
         Sprite2 = Player2.GetComponent<SpriteRenderer>();
         CurrentColorLogic1 = Sprite1.color;
     }
+
     public void AddPlayerTwoScore()
     {
         GoalAIScore += 1f;

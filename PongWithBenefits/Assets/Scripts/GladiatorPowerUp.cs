@@ -17,8 +17,9 @@ public class GladiatorPowerUp : PowerUpBase
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+            EternalGameManagerScript.Instance.PlayerGoalPointsTransfer = LogicManager.Instance.GoalPlayerScore;
+            EternalGameManagerScript.Instance.Player2GoalPointsTransfer = LogicManager.Instance.GoalAIScore;
+            SceneManager.LoadScene(1);
         }
     }
 }
