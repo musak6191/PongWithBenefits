@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 1964890849}
   m_Layer: 6
   m_Name: Sword
-  m_TagString: Projectile
+  m_TagString: GladiatorSword1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 2031811417}
   m_Layer: 6
   m_Name: Sword
-  m_TagString: Projectile
+  m_TagString: GladiatorSword2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -23,6 +23,8 @@ public class GladiatorController : MonoBehaviour
     float StartPosition1;
     float StartPosition2;
 
+    bool didPlayerOneWin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,8 +72,15 @@ public class GladiatorController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile"))
+        if (collision.CompareTag("GladiatorSword1"))
         {
+            didPlayerOneWin = false;
+            PlayerRenderer.color = Color.black;
+            StartCoroutine(GladiatorOver());
+        }
+        else if (collision.CompareTag("GladiatorSword2"))
+        {
+            didPlayerOneWin = true;
             PlayerRenderer.color = Color.black;
             StartCoroutine(GladiatorOver());
         }
@@ -95,13 +104,13 @@ public class GladiatorController : MonoBehaviour
         Time.timeScale = 0;
         GameOverUI.gameObject.SetActive(true);
         PointUI.gameObject.SetActive(false);
-        if (Player1 == null)                                                    // <---- Du frägst hier ab ob die destroyed werden obwohl niemand destroyed wird
+        if (didPlayerOneWin)
         {
             GameOverUI.text = "Player 2 wins " + PointsToWin + " points !";
             EternalGameManagerScript.Instance.Player2GoalPointsTransfer += PointsToWin;
             EternalGameManagerScript.Instance.isGladiatorFightOver = true;
         }
-        else if (Player2 == null)
+        else if (!didPlayerOneWin)
         {
             GameOverUI.text = "Player 1 wins " + PointsToWin + " points !";
             EternalGameManagerScript.Instance.PlayerGoalPointsTransfer += PointsToWin;
